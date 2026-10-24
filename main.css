@@ -25,6 +25,9 @@ header {
     height: clamp(200px, 30vh, 350px);
     margin: 0 auto;
     overflow: hidden;
+    background-image: url("img/coastal-logging-road.png");
+    background-size: cover;
+    background-position: center 60%;
 }
 
 /* 4Runner sprite */
