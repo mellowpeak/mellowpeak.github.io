@@ -107,27 +107,54 @@ header {
     background-image: url("img/4runner-icon.png");
     background-size: contain;
     background-position: center;
-    background-repeat: no-repeat;
-
-    /****image-rendering: crisp-edges;
-    image-rendering: pixelated;****/
 
     transform: translateX(-50%);
 }
 
-/* Gentle 4Runner suspension movement */
+/* 4Runner suspension movement */
 
 #masthead-logo {
-    animation: suspension-idle 3s ease-in-out infinite;
+    animation: suspension-bounce 1.4s linear infinite;
+    transform-origin: 50% 85%;
 }
 
-@keyframes suspension-idle {
-    0%, 100% {
-        transform: translateX(-50%) translateY(0);
+/* Uneven gravel-road suspension */
+
+@keyframes suspension-bounce {
+    0% {
+        transform: translateX(-50%) translateY(0) rotate(0deg);
     }
 
-    50% {
-        transform: translateX(-50%) translateY(-2px);
+    12% {
+        transform: translateX(-50%) translateY(-2px) rotate(-0.3deg);
+    }
+
+    22% {
+        transform: translateX(-50%) translateY(1px) rotate(0.2deg);
+    }
+
+    35% {
+        transform: translateX(-50%) translateY(-3px) rotate(-0.4deg);
+    }
+
+    43% {
+        transform: translateX(-50%) translateY(1px) rotate(0.1deg);
+    }
+
+    58% {
+        transform: translateX(-50%) translateY(-1px) rotate(0.3deg);
+    }
+
+    70% {
+        transform: translateX(-50%) translateY(2px) rotate(-0.2deg);
+    }
+
+    84% {
+        transform: translateX(-50%) translateY(-2px) rotate(0.2deg);
+    }
+
+    100% {
+        transform: translateX(-50%) translateY(0) rotate(0deg);
     }
 }
 
