@@ -20,62 +20,24 @@ header {
     min-height: 240px;
 }
 
-/* Centred overland masthead */
-
 .overland-scene {
     position: relative;
-
     width: min(92vw, 640px, 58vh);
     aspect-ratio: 16 / 9;
-
     overflow: hidden;
-
     background-image: url("img/coastal-logging-road.png");
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
-}
-
-/* 4Runner sprite */
-
-#masthead-logo {
-    position: absolute;
-    z-index: 2;
-
-    left: 50%;
-    bottom: 0;
-
-    width: 50%;
-    aspect-ratio: 1;
-
-    background-image: url("img/4runner-icon.png");
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-
-    animation: suspension-bounce 0.8s ease-in-out infinite;
-}
-
-#masthead-logo {
-    position: absolute;
-    z-index: 2;
-
-    left: 50%;
-    top: 50%;
-
-    width: 26.5%;
-    aspect-ratio: 1;
-
-    background-image: url("img/4runner-icon.png");
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-
-    animation: suspension-bounce 0.8s ease-in-out infinite;
+    border-radius: 12px;
+    box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.08),
+        0 10px 30px rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-sizing: border-box;
 }
 
 /* Animated coastal mist */
-
 .overland-scene::after {
     content: "";
     position: absolute;
@@ -85,7 +47,6 @@ header {
     height: 65%;
     z-index: 1;
     pointer-events: none;
-
     background:
         radial-gradient(
             ellipse at 25% 50%,
@@ -97,55 +58,65 @@ header {
             rgba(220, 235, 240, 0.65),
             transparent 30%
         );
-
     filter: blur(12px);
     animation: mist-drift 18s ease-in-out infinite alternate;
 }
+
+#overland-vehicle {
+    position: absolute;
+    z-index: 2;
+    left: 50%;
+    top: 50%;
+    width: 26.5%;
+    aspect-ratio: 1;
+    background-image: url("img/4runner-icon.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    animation: suspension-bounce 0.9s steps(1, end) infinite;
+}
+
+/* Keep the 4Runner in front of the mist */
+/*
+#overland-vehicle {
+    z-index: 2;
+}
+*/
 
 @keyframes mist-drift {
     from {
         transform: translateX(-8%);
     }
-
     to {
         transform: translateX(8%);
     }
 }
 
-/* Keep the 4Runner in front of the mist */
-
-#masthead-logo {
-    z-index: 2;
-}
-
-.scene-stage::after {
-    from {
-        transform: translateX(-100%);
-    }
-
-    to {
-        transform: translateX(100%);
-    }
-}
-
 @keyframes suspension-bounce {
     0%, 100% {
-        transform: translate(-50%, -50%) translateY(0);
+        transform: translateX(-50%) translateY(0);
     }
-
-    50% {
-        transform: translate(-50%, -50%) translateY(-2px);
+    22% {
+        transform: translateX(-50%) translateY(-1px);
+    }
+    35% {
+        transform: translateX(-50%) translateY(0);
+    }
+    62% {
+        transform: translateX(-50%) translateY(1px);
+    }
+    72% {
+        transform: translateX(-50%) translateY(0);
     }
 }
 
-@media (prefers-reduced-motion: reduce) {
-    .scene-stage::after,
-    #masthead-logo {
-        animation: none;
+@media (prefers-reduced-motion:reduce) {
+    .overland-scene::after,
+    .overland-vehicle {
+        animation:none;
     }
-
-    #masthead-logo {
-        transform: translate(-50%, -50%);
+    .overland-vehicle {
+        transform:translateX(-50%);
     }
 }
 
