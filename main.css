@@ -8,40 +8,52 @@ html, body {
     background:#f3f3f3;
 }
 
+/* Header occupies the upper third */
+
 header {
     display: flex;
     justify-content: center;
     align-items: center;
+
     width: 100%;
-    height: clamp(260px, 33.33vh, 350px);
-    overflow: hidden;
+    height: 33.33vh;
+    min-height: 240px;
 }
 
-/* Isometric overland scene */
+/* Centred overland masthead */
 
 .overland-scene {
     position: relative;
-    width: 100%;
-    max-width: 1200px;
-    height: 100%;
-    overflow: hidden;
-}
 
-.scene-stage {
-    position: absolute;
-
-    left: 50%;
-    top: 50%;
-
-    width: max(100%, 1000px);
+    width: min(92vw, 640px, 58vh);
     aspect-ratio: 16 / 9;
 
-    transform: translate(-50%, -50%);
+    overflow: hidden;
 
     background-image: url("img/coastal-logging-road.png");
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+/* 4Runner sprite */
+
+#masthead-logo {
+    position: absolute;
+    z-index: 2;
+
+    left: 50%;
+    bottom: 0;
+
+    width: 50%;
+    aspect-ratio: 1;
+
+    background-image: url("img/4runner-icon.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    animation: suspension-bounce 0.8s ease-in-out infinite;
 }
 
 #masthead-logo {
