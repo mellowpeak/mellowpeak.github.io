@@ -62,7 +62,7 @@ header {
     animation: mist-drift 18s ease-in-out infinite alternate;
 }
 
-#overland-vehicle {
+.overland-vehicle {
     position: absolute;
     z-index: 2;
     left: 50%;
@@ -78,7 +78,7 @@ header {
 
 /* Keep the 4Runner in front of the mist */
 /*
-#overland-vehicle {
+.overland-vehicle {
     z-index: 2;
 }
 */
