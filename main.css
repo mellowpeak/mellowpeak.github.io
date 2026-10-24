@@ -30,6 +30,53 @@ header {
     background-position: center 60%;
 }
 
+/* Animated coastal mist */
+
+.overland-scene::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(220, 235, 240, 0.15) 35%,
+        rgba(220, 235, 240, 0.3) 50%,
+        rgba(220, 235, 240, 0.15) 65%,
+        transparent 100%
+    );
+
+    animation: mist-drift 35s linear infinite;
+}
+
+/* Keep the 4Runner in front of the mist */
+
+#masthead-logo {
+    z-index: 2;
+}
+
+/* Slowly drift the mist across the landscape */
+
+@keyframes mist-drift {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(100%);
+    }
+}
+
+/* Respect reduced-motion preferences */
+
+@media (prefers-reduced-motion: reduce) {
+    .overland-scene::after {
+        animation: none;
+    }
+}
+
 /* 4Runner sprite */
 
 #masthead-logo {
