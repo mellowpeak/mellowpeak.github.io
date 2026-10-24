@@ -35,20 +35,37 @@ header {
 .overland-scene::after {
     content: "";
     position: absolute;
-    inset: 0;
+    top: 10%;
+    left: -30%;
+    width: 160%;
+    height: 65%;
     z-index: 1;
     pointer-events: none;
 
-    background: linear-gradient(
-        90deg,
-        transparent 0%,
-        rgba(220, 235, 240, 0.15) 35%,
-        rgba(220, 235, 240, 0.3) 50%,
-        rgba(220, 235, 240, 0.15) 65%,
-        transparent 100%
-    );
+    background:
+        radial-gradient(
+            ellipse at 25% 50%,
+            rgba(230, 240, 245, 0.75),
+            transparent 35%
+        ),
+        radial-gradient(
+            ellipse at 70% 40%,
+            rgba(220, 235, 240, 0.65),
+            transparent 30%
+        );
 
-    animation: mist-drift 35s linear infinite;
+    filter: blur(12px);
+    animation: mist-drift 18s ease-in-out infinite alternate;
+}
+
+@keyframes mist-drift {
+    from {
+        transform: translateX(-8%);
+    }
+
+    to {
+        transform: translateX(8%);
+    }
 }
 
 /* Keep the 4Runner in front of the mist */
