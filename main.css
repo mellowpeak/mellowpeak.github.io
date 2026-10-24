@@ -115,46 +115,23 @@ header {
 
 #masthead-logo {
     animation: suspension-bounce 1.4s linear infinite;
-    transform-origin: 50% 85%;
 }
 
 /* Uneven gravel-road suspension */
 
+/* Subtle, consistent gravel-road vibration */
+
+#masthead-logo {
+    animation: suspension-bounce 0.8s ease-in-out infinite;
+}
+
 @keyframes suspension-bounce {
-    0% {
-        transform: translateX(-50%) translateY(0) rotate(0deg);
+    0%, 100% {
+        transform: translateX(-50%) translateY(0);
     }
 
-    12% {
-        transform: translateX(-50%) translateY(-2px) rotate(-0.3deg);
-    }
-
-    22% {
-        transform: translateX(-50%) translateY(1px) rotate(0.2deg);
-    }
-
-    35% {
-        transform: translateX(-50%) translateY(-3px) rotate(-0.4deg);
-    }
-
-    43% {
-        transform: translateX(-50%) translateY(1px) rotate(0.1deg);
-    }
-
-    58% {
-        transform: translateX(-50%) translateY(-1px) rotate(0.3deg);
-    }
-
-    70% {
-        transform: translateX(-50%) translateY(2px) rotate(-0.2deg);
-    }
-
-    84% {
-        transform: translateX(-50%) translateY(-2px) rotate(0.2deg);
-    }
-
-    100% {
-        transform: translateX(-50%) translateY(0) rotate(0deg);
+    50% {
+        transform: translateX(-50%) translateY(-2px);
     }
 }
 
