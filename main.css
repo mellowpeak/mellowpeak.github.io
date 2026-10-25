@@ -20,7 +20,12 @@ html,body {
     min-height:100vh;
     margin:0;
     padding:0;
-    background:var(--page-bg);
+    background-color:var(--page-bg);
+    background-image:
+        linear-gradient(rgba(242,244,245,0.94),rgba(242,244,245,0.94)),
+        url("img/topography.svg");
+    background-size:auto,600px 600px;
+    background-repeat:repeat;
 }
 
 header {
@@ -32,98 +37,72 @@ header {
     padding:48px 0 64px;
 }
 
-.overland-scene {
-    position:relative;
-    width:min(92vw,640px,58vh);
-    aspect-ratio:16/9;
-    overflow:hidden;
-    background-image:url("img/coastal-logging-road-v2.png");
-    background-size:100% 100%;
-    background-position:center;
-    background-repeat:no-repeat;
-    border:1px solid rgba(0,0,0,0.06);
-    border-radius:12px;
-    box-shadow:0 2px 4px rgba(0,0,0,0.08),0 10px 30px rgba(0,0,0,0.12);
+.hero {
+    position: relative;
+    width: 100%;
+    max-width: 450px;
+    height: 300px;
+    margin: 0 auto 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.scene-clouds {
-    position:absolute;
-    z-index:1;
-    top:0;
-    left:0;
-    width:200%;
-    height:100%;
-    background-image:url("img/scene-clouds.png");
-    background-size:50% 100%;
-    background-repeat:repeat-x;
-    opacity:0.25;
-    pointer-events:none;
-    animation:cloud-drift 45s linear infinite;
+.hero-vehicle {
+    position: absolute;
+    z-index: 2;
+    width: 78%;
+    max-width: 450px;
+    animation: vehicle-float 5s ease-in-out infinite;
+    will-change: transform;
 }
 
-.overland-scene::after {
-    content:"";
-    position:absolute;
-    z-index:2;
-    top:10%;
-    left:-30%;
-    width:160%;
-    height:65%;
-    pointer-events:none;
-    background:
-        radial-gradient(ellipse at 25% 50%,rgba(230,240,245,0.75),transparent 35%),
-        radial-gradient(ellipse at 70% 40%,rgba(220,235,240,0.65),transparent 30%);
-    filter:blur(12px);
-    animation:mist-drift 18s ease-in-out infinite alternate;
+.hero-vehicle img {
+    display: block;
+    width: 100%;
+    height: auto;
 }
 
-.overland-vehicle {
-    position:absolute;
-    z-index:3;
-    left:50%;
-    bottom:18%;
-    width:28.5%;
-    aspect-ratio:1;
-    background-image:url("img/4runner-icon.png");
-    background-size:contain;
-    background-position:center;
-    background-repeat:no-repeat;
-    animation:suspension-bounce 0.9s steps(1,end) infinite;
+.hero-shadow {
+    position: absolute;
+    z-index: 1;
+    bottom: 5px;
+    left: 50%;
+    width: 56%;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(35, 49, 54, 0.32);
+    filter: blur(7px);
+    transform: translateX(-50%);
+    animation: shadow-breathe 5s ease-in-out infinite;
 }
 
-@keyframes cloud-drift {
-    from {
-        transform:translateX(0);
+@keyframes vehicle-float {
+    0%, 100% {
+        transform: translateY(0);
     }
-    to {
-        transform:translateX(-50%);
+
+    50% {
+        transform: translateY(-14px);
     }
 }
 
-@keyframes mist-drift {
-    from {
-        transform:translateX(-8%);
+@keyframes shadow-breathe {
+    0%, 100% {
+        transform: translateX(-50%) scaleX(1);
+        opacity: 0.75;
     }
-    to {
-        transform:translateX(8%);
+
+    50% {
+        transform: translateX(-50%) scaleX(0.78);
+        opacity: 0.4;
     }
 }
 
-@keyframes suspension-bounce {
-    0%,100% {
-        transform:translateX(-50%) translateY(0);
-    }
-    22% {
-        transform:translateX(-50%) translateY(-1px);
-    }
-    35% {
-        transform:translateX(-50%) translateY(0);
-    }
-    62% {
-        transform:translateX(-50%) translateY(1px);
-    }
-    72% {
-        transform:translateX(-50%) translateY(0);
+@media (prefers-reduced-motion: reduce) {
+    .hero-vehicle,
+    .hero-shadow {
+        animation: none;
     }
 }
 
@@ -132,7 +111,7 @@ main {
     flex:1;
     justify-content:center;
     align-items:flex-start;
-    width:min(80%,1200px);
+    width:min(88%,1400px);
     margin:0 auto;
     padding:0 0 120px;
 }
@@ -142,10 +121,12 @@ main {
     flex-direction:column;
     align-self:stretch;
     width:calc(100% / 3);
+    align-items:center;
 }
 
 .content-column h2 {
-    width:100%;
+    width:220px;
+    max-width:90%;
     margin:0 0 14px;
     padding:0 0 0 12px;
     text-align:left;
@@ -179,7 +160,8 @@ main {
 .content-column ul {
     display:flex;
     flex-direction:column;
-    width:100%;
+    width:220px;
+    max-width:90%;
     margin:0;
     padding:0;
     gap:3px;
@@ -336,10 +318,6 @@ button[type=submit]:focus-visible {
         justify-content:flex-start;
         padding:32px 10% 24px;
     }
-    .overland-scene {
-        width:100%;
-        max-width:640px;
-    }
     main {
         flex:none;
         flex-direction:column;
@@ -366,14 +344,6 @@ button[type=submit]:focus-visible {
 }
 
 @media (prefers-reduced-motion:reduce) {
-    .scene-clouds,
-    .overland-scene::after,
-    .overland-vehicle {
-        animation:none;
-    }
-    .overland-vehicle {
-        transform:translateX(-50%);
-    }
     .content-column li a,
     .content-column li a i,
     footer form,
