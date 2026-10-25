@@ -1,58 +1,77 @@
 :root {
-    --page-bg:#F2F4F5;
-    --heading:#31576B;
-    --text:#30373B;
-    --yellow:#E1B04D;
-    --orange:#D77A3A;
-    --red:#B84C3D;
-    --surface:#FFFFFF;
-    --border:#DCE2E5;
+    --page-bg: #F2F4F5;
+    --heading: #31576B;
+    --text: #30373B;
+    --yellow: #E1B04D;
+    --orange: #D77A3A;
+    --red: #B84C3D;
+    --surface: #FFFFFF;
+    --border: #DCE2E5;
 }
+
+/* =========================
+   BASE
+   ========================= */
 
 * {
-    box-sizing:border-box;
+    box-sizing: border-box;
 }
 
-html,body {
-    display:flex;
-    flex-direction:column;
-    width:100%;
-    min-height:100vh;
-    margin:0;
-    padding:0;
-    background-color:var(--page-bg);
+html,
+body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+
+    background-color: var(--page-bg);
     background-image:
-        linear-gradient(rgba(242,244,245,0.94),rgba(242,244,245,0.94)),
+        linear-gradient(
+            rgba(242, 244, 245, 0.94),
+            rgba(242, 244, 245, 0.94)
+        ),
         url("img/topography.svg");
-    background-size:auto,600px 600px;
-    background-repeat:repeat;
+    background-size: auto, 600px 600px;
+    background-repeat: repeat;
 }
+
+/* =========================
+   HEADER AND HERO
+   ========================= */
 
 header {
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    width:100%;
-    min-height:0;
-    padding:48px 0 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    min-height: 0;
+    padding: 20px 0 24px;
 }
 
 .hero {
     position: relative;
-    width: 100%;
-    max-width: 450px;
-    height: 300px;
-    margin: 0 auto 25px;
+
     display: flex;
     justify-content: center;
     align-items: center;
+
+    width: 100%;
+    max-width: 450px;
+    height: 220px;
+
+    margin: 0 auto 10px;
 }
 
 .hero-vehicle {
     position: absolute;
     z-index: 2;
+
     width: 78%;
     max-width: 450px;
+
     animation: vehicle-float 5s ease-in-out infinite;
     will-change: transform;
 }
@@ -66,19 +85,26 @@ header {
 .hero-shadow {
     position: absolute;
     z-index: 1;
+
     bottom: 5px;
     left: 50%;
+
     width: 56%;
     height: 12px;
+
     border-radius: 50%;
     background: rgba(35, 49, 54, 0.32);
     filter: blur(7px);
+
     transform: translateX(-50%);
     animation: shadow-breathe 5s ease-in-out infinite;
 }
 
+/* Vehicle animation */
+
 @keyframes vehicle-float {
-    0%, 100% {
+    0%,
+    100% {
         transform: translateY(0);
     }
 
@@ -87,8 +113,11 @@ header {
     }
 }
 
+/* Shadow animation */
+
 @keyframes shadow-breathe {
-    0%, 100% {
+    0%,
+    100% {
         transform: translateX(-50%) scaleX(1);
         opacity: 0.75;
     }
@@ -99,255 +128,460 @@ header {
     }
 }
 
-@media (prefers-reduced-motion: reduce) {
-    .hero-vehicle,
-    .hero-shadow {
-        animation: none;
-    }
-}
+/* =========================
+   MAIN LAYOUT
+   ========================= */
 
 main {
-    display:flex;
-    flex:1;
-    justify-content:center;
-    align-items:flex-start;
-    width:min(88%,1400px);
-    margin:0 auto;
-    padding:0 0 120px;
+    display: flex;
+    flex: 1;
+
+    justify-content: center;
+    align-items: flex-start;
+
+    width: min(80%, 1200px);
+    margin: 0 auto;
+    padding: 60px 0 100px;
 }
+
+/* Three evenly spaced columns */
 
 .content-column {
-    display:flex;
-    flex-direction:column;
-    align-self:stretch;
-    width:calc(100% / 3);
-    align-items:center;
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
+    align-items: center;
+
+    width: calc(100% / 3);
 }
+
+/* Column headings */
 
 .content-column h2 {
-    width:220px;
-    max-width:90%;
-    margin:0 0 14px;
-    padding:0 0 0 12px;
-    text-align:left;
-    text-transform:lowercase;
-    font-family:'Manrope',sans-serif;
-    font-size:22px;
-    font-weight:700;
-    line-height:1.4;
-    color:var(--heading);
-    white-space:nowrap;
+    width: 220px;
+    max-width: 90%;
+
+    margin: 0 0 14px;
+    padding: 0;
+
+    text-align: left;
+    text-transform: lowercase;
+
+    font-family: 'Manrope', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.4;
+
+    color: var(--heading);
+    white-space: nowrap;
 }
 
+/* Three-colour heading underline */
+
 .content-column h2::after {
-    content:"";
-    display:block;
-    width:60px;
-    height:3px;
-    margin-top:10px;
-    border-radius:2px;
-    background:linear-gradient(90deg,
+    content: "";
+
+    display: block;
+    width: 60px;
+    height: 3px;
+
+    margin-top: 10px;
+
+    border-radius: 2px;
+    background: linear-gradient(
+        90deg,
         var(--yellow) 0 33.33%,
         var(--orange) 33.33% 66.66%,
-        var(--red) 66.66% 100%);
+        var(--red) 66.66% 100%
+    );
 }
 
 .content-column h2 a {
-    text-decoration:none;
-    color:inherit;
+    text-decoration: none;
+    color: inherit;
 }
 
+/* Link lists */
+
 .content-column ul {
-    display:flex;
-    flex-direction:column;
-    width:220px;
-    max-width:90%;
-    margin:0;
-    padding:0;
-    gap:3px;
+    display: flex;
+    flex-direction: column;
+
+    width: 220px;
+    max-width: 90%;
+
+    margin: 0;
+    padding: 0;
+    gap: 3px;
 }
 
 .content-column li {
-    list-style:none;
-    margin:0;
-    padding:0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
+
+/* Individual links */
 
 .content-column li a {
-    display:block;
-    width:100%;
-    padding:9px 12px;
-    border-radius:7px;
-    text-decoration:none;
-    color:var(--text);
-    font-family:'Inter',sans-serif;
-    font-size:15px;
-    font-weight:400;
-    line-height:1.4;
-    transition:background-color 0.18s ease,color 0.18s ease,transform 0.18s ease;
+    display: block;
+    width: 100%;
+
+    padding: 9px 12px;
+
+    border-radius: 7px;
+
+    text-decoration: none;
+    color: var(--text);
+
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.4;
+
+    transition:
+        background-color 0.18s ease,
+        color 0.18s ease,
+        transform 0.18s ease;
 }
+
+/* Link icons */
 
 .content-column li a i {
-    display:inline-block;
-    width:20px;
-    margin-right:10px;
-    text-align:center;
-    color:var(--heading);
-    opacity:0.65;
-    font-size:16px;
-    transition:opacity 0.18s ease;
+    display: inline-block;
+
+    width: 20px;
+    margin-right: 10px;
+
+    text-align: center;
+    color: var(--heading);
+    opacity: 0.65;
+
+    font-size: 16px;
+
+    transition: opacity 0.18s ease;
 }
 
+/* Hover effects */
+
 .content-column li a:hover {
-    background:rgba(49,87,107,0.07);
-    color:var(--heading);
-    transform:translateX(2px);
+    background: rgba(49, 87, 107, 0.07);
+    color: var(--heading);
+    transform: translateX(2px);
 }
 
 .content-column li a:hover i {
-    opacity:1;
+    opacity: 1;
 }
+
+/* Keyboard accessibility */
 
 .content-column li a:focus-visible {
-    outline:2px solid var(--heading);
-    outline-offset:2px;
-    background:rgba(49,87,107,0.07);
+    outline: 2px solid var(--heading);
+    outline-offset: 2px;
+    background: rgba(49, 87, 107, 0.07);
 }
 
+/* =========================
+   BOTTOM SEARCH BAR
+   ========================= */
+
 footer {
-    position:fixed;
-    bottom:24px;
-    left:0;
-    z-index:10;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    width:100%;
-    pointer-events:none;
+    position: fixed;
+    bottom: 16px;
+    left: 0;
+    z-index: 10;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+
+    pointer-events: none;
 }
 
 footer form {
-    display:flex;
-    align-items:center;
-    width:min(440px,80vw);
-    height:48px;
-    margin:0;
-    padding:0 12px;
-    background:var(--surface);
-    border:1px solid var(--border);
-    border-radius:10px;
-    box-shadow:0 4px 20px rgba(0,0,0,0.10);
-    pointer-events:auto;
-    transition:border-color 0.2s ease,box-shadow 0.2s ease;
+    display: flex;
+    align-items: center;
+
+    width: min(440px, 80vw);
+    height: 48px;
+
+    margin: 0;
+    padding: 0 12px;
+
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.10);
+
+    pointer-events: auto;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 footer form:focus-within {
-    border-color:var(--heading);
-    box-shadow:0 0 0 3px rgba(49,87,107,0.1),0 4px 20px rgba(0,0,0,0.08);
+    border-color: var(--heading);
+
+    box-shadow:
+        0 0 0 3px rgba(49, 87, 107, 0.1),
+        0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
-input[type=text] {
-    flex:1;
-    min-width:0;
-    height:100%;
-    margin:0;
-    padding:0 8px;
-    background:none;
-    border:none;
-    outline:none;
-    font-family:'Inter',sans-serif;
-    font-size:15px;
-    font-weight:400;
-    color:var(--text);
+/* Search input */
+
+input[type="text"] {
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+
+    margin: 0;
+    padding: 0 8px;
+
+    background: none;
+    border: none;
+    outline: none;
+
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+
+    color: var(--text);
 }
 
 input::placeholder {
-    color:#929DA3;
+    color: #929DA3;
 }
 
-button[type=submit] {
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    flex-shrink:0;
-    width:32px;
-    height:32px;
-    margin:0;
-    padding:0;
-    background:none;
-    border:none;
-    border-radius:7px;
-    color:var(--heading);
-    font-size:16px;
-    cursor:pointer;
-    transition:background-color 0.18s ease;
+/* Search button */
+
+button[type="submit"] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    width: 32px;
+    height: 32px;
+
+    margin: 0;
+    padding: 0;
+
+    background: none;
+    border: none;
+    border-radius: 7px;
+
+    color: var(--heading);
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition: background-color 0.18s ease;
 }
 
-button[type=submit]:hover {
-    background:rgba(49,87,107,0.08);
+button[type="submit"]:hover {
+    background: rgba(49, 87, 107, 0.08);
 }
 
-button[type=submit]:focus-visible {
-    outline:2px solid var(--heading);
-    outline-offset:2px;
+button[type="submit"]:focus-visible {
+    outline: 2px solid var(--heading);
+    outline-offset: 2px;
 }
 
-@media (min-width:951px) and (min-height:850px) {
-    header {
-        padding:72px 0 96px;
-    }
-}
+/* =========================
+   MEDIUM DESKTOP / TABLET
+   ========================= */
 
-@media (min-width:701px) and (max-width:950px) {
-    .content-column h2 {
-        padding-left:5px;
-    }
-    .content-column li a {
-        padding:9px 5px;
-        font-size:14px;
-    }
-    .content-column li a i {
-        width:16px;
-        margin-right:6px;
-        font-size:14px;
-    }
-}
-
-@media (max-width:700px) {
-    header {
-        justify-content:flex-start;
-        padding:32px 10% 24px;
-    }
+@media (min-width: 701px) and (max-width: 950px) {
     main {
-        flex:none;
-        flex-direction:column;
-        align-items:stretch;
-        width:100%;
-        gap:30px;
-        padding:16px 0 120px;
+        width: 90%;
     }
+
+    .content-column h2 {
+        font-size: 20px;
+    }
+
+    .content-column li a {
+        padding: 9px 5px;
+        font-size: 14px;
+    }
+
+    .content-column li a i {
+        width: 16px;
+        margin-right: 6px;
+        font-size: 14px;
+    }
+}
+
+/* =========================
+   SHORT VIEWPORTS
+   For browser windows using
+   roughly half the screen height
+   ========================= */
+
+@media (min-width: 701px) and (max-height: 700px) {
+    header {
+        padding: 12px 0 16px;
+    }
+
+    .hero {
+        height: 170px;
+        margin-bottom: 5px;
+    }
+
+    .hero-vehicle {
+        width: 72%;
+    }
+
+    main {
+        padding-bottom: 80px;
+    }
+
+    .content-column h2 {
+        margin-bottom: 8px;
+        font-size: 20px;
+    }
+
+    .content-column h2::after {
+        margin-top: 6px;
+    }
+
+    .content-column li a {
+        padding-top: 6px;
+        padding-bottom: 6px;
+    }
+
+    footer {
+        bottom: 10px;
+    }
+
+    footer form {
+        height: 42px;
+    }
+}
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 700px) {
+    header {
+        justify-content: flex-start;
+        padding: 24px 10% 16px;
+    }
+
+    .hero {
+        height: 190px;
+        margin-bottom: 0;
+    }
+
+    .hero-vehicle {
+        width: 85%;
+    }
+
+    main {
+        flex: none;
+        flex-direction: column;
+        align-items: stretch;
+
+        width: 100%;
+
+        gap: 26px;
+        padding: 12px 0 100px;
+    }
+
     .content-column {
-        width:100%;
+        width: 100%;
     }
+
     .content-column h2,
     .content-column ul {
-        width:80%;
-        margin-left:auto;
-        margin-right:auto;
+        width: 80%;
+        max-width: 360px;
+        margin-left: auto;
+        margin-right: auto;
     }
+
+    .content-column h2 {
+        margin-bottom: 10px;
+        font-size: 21px;
+    }
+
+    .content-column li a {
+        padding: 9px 12px;
+        font-size: 15px;
+    }
+
+    .content-column li a i {
+        width: 20px;
+        margin-right: 10px;
+        font-size: 16px;
+    }
+
     footer {
-        bottom:16px;
+        bottom: 12px;
     }
+
     footer form {
-        width:80%;
+        width: 80%;
+        height: 46px;
     }
 }
 
-@media (prefers-reduced-motion:reduce) {
+/* =========================
+   VERY SHORT MOBILE VIEWPORTS
+   ========================= */
+
+@media (max-width: 700px) and (max-height: 650px) {
+    header {
+        padding-top: 12px;
+        padding-bottom: 8px;
+    }
+
+    .hero {
+        height: 140px;
+    }
+
+    .hero-vehicle {
+        width: 70%;
+    }
+
+    main {
+        gap: 20px;
+        padding-top: 8px;
+        padding-bottom: 80px;
+    }
+
+    .content-column h2 {
+        margin-bottom: 6px;
+    }
+
+    .content-column h2::after {
+        margin-top: 5px;
+    }
+
+    .content-column li a {
+        padding-top: 6px;
+        padding-bottom: 6px;
+    }
+}
+
+/* =========================
+   REDUCED MOTION ACCESSIBILITY
+   ========================= */
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-vehicle,
+    .hero-shadow,
     .content-column li a,
     .content-column li a i,
     footer form,
-    button[type=submit] {
-        transition:none;
+    button[type="submit"] {
+        animation: none;
+        transition: none;
     }
 }
